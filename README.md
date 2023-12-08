@@ -5,9 +5,10 @@ Currently implements basic wavefront file loading and data storage.
 
 This document will ideally develop into an intuitive resource in implementing wavefront file reading and rendering software.
 
-## How to use WIP
+## How to use
 - To compile, use the command *g++ -o fileReader.exe main.cpp* inside the project directory, using the MinGW compiler with the stb-image library file present.
 - To run, use the command *.\fileReader.exe param_obj* with *param_obj* being the relative path of an .obj file.
+- This program parses and displays the present data inside the referenced files.
 
 ## Data format
 - File parameter must be filled with a reference to an .obj format file to produce model data.
