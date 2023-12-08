@@ -1,14 +1,14 @@
 # OBJ File Reader
-
 Used to import .obj files and .mtl files as a model of objects and materials.
 
 Currently implements basic wavefront file loading and data storage.
 
 This document will ideally develop into an intuitive resource in implementing wavefront file reading and rendering software.
 
-## How to use WIP
+## How to use
 - To compile, use the command *g++ -o fileReader.exe main.cpp* inside the project directory, using the MinGW compiler with the stb-image library file present.
 - To run, use the command *.\fileReader.exe param_obj* with *param_obj* being the relative path of an .obj file.
+- This program parses and displays the present data inside the referenced files.
 
 ## Data format
 - File parameter must be filled with a reference to an .obj format file to produce model data.
@@ -34,21 +34,21 @@ Values following a statement's keyword are separated using whitespace along the 
 
 Some attributes have suggested ranges, given from the specifications of the source material used in this document; these possible range values could conflict with other software which load/render wavefront files differently.
 
-Primitive statements for formatting and specifying sub-values are given in the table below.
+Primitive statements for formatting and specifying sub-values are given in a table below.
 
 | Included | Keyword | Command | Data | Description | Format |
-| --- | ---| --- | --- | --- | --- |
-||| Primitives
+| ... | ...| ... | ... | ... | ... |
+| Primitives (For both .obj files and .mtl files) ||||||
 | Yes | # | Comment | - | Statement keywords given that aren't specified below are ignored | - |
 | Yes | / | Index separator | - | Separate indices specified for elements | - |
-| No  | \\ | Statement line break | - | Continue current statement on next line, ignoring further input on this line | - |
+| No  | \backslash\backslash | Statement line break | - | Continue current statement on next line, ignoring further input on this line | - |
 
 ## Wavefront .obj files (https://paulbourke.net/dataformats/obj/)
 Contains the meshes of a model, represented using vectors and elements.
 
 | Included | Keyword | Command | Data | Description | Format |
-| --- | --- | --- | --- | --- | --- |
-||| Vertex Data
+| ... | ...| ... | ... | ... | ... |
+| Vertex Data ||||||
 | Yes | v      | Geometric vertex | x y z w | Vertex at position (x,y,z) with optional weight (w) with default value 1.0 | Values |
 | Yes | vt     | Texture coordinate | u v | Texture at position (u,v) with optional component (v) with default value 0 | Values |
 | Yes | n      | Normal vector | x y z | Normal vector with direction (x,y,z) | Float |
@@ -57,28 +57,28 @@ Contains the meshes of a model, represented using vectors and elements.
 | No  | deg    | ? | ? | ? | ? |
 | No  | bmat   | ? | ? | ? | ? |
 | No  | step   | ? | ? | ? | ? |
-||| Elements
+| Elements ||||||
 | No  | p     | Point | ? | ? | ? |
 | No  | l     | Line | ? | ? | ? |
 | Yes | f     | Face | i j k l | Triangle face across (i,j,k) or Quad face across (i,j,k,l) if optional point (l) is given | Indices: vertex data, texture coordinate, normal |
 | No  | curv  | ? | ? | ? | ? |
 | No  | curv2 | ? | ? | ? | ? |
 | No  | surf  | ? | ? | ? | ? |
-||| Free-form Statements
+| Free-form Statements ||||||
 | No  | parm | ? | ? | ? | ? |
 | No  | trim | ? | ? | ? | ? |
 | No  | hole | ? | ? | ? | ? |
 | No  | scrv | ? | ? | ? | ? |
 | No  | sp   | ? | ? | ? | ? |
 | No  | end  | ? | ? | ? | ? |
-||| Connectivity
+| Connectivity ||||||
 | No  | con | ? | ? | ? | ? |
 | Grouping ||||||
 | No  | g  | ? | ? | ? | ? |
 | Yes | s  | Smoothing group | n | Assign proceeding elements to smoothing group (n) for values >0 *or* avoid smoothing with values 'off' or 0 | Identifiers |
 | No  | mg | ? | ? | ? | ? |
 | No  | o  | ? | ? | ? | ? |
-||| Rendering Attributes
+| Rendering Attributes ||||||
 | No  | bevel      | ? | ? | ? | ? |
 | No  | c_interp   | ? | ? | ? | ? |
 | No  | d_interp   | ? | ? | ? | ? |
@@ -94,8 +94,8 @@ Contains the meshes of a model, represented using vectors and elements.
 Contains the materials for rendering a model, represented using RGB values, attributes/flags and maps.
 
 | Included | Keyword | Command | Data | Description | Format |
-| --- | --- | --- | --- | --- | --- |
-||| Colour & Illumination
+| ... | ...| ... | ... | ... | ... |
+| Colour & Illumination ||||||
 | Yes | Ka    | Ambient colour | r g b | Assign RGB value (r,g,b) to current material | Floats |
 | Yes | Kd    | Diffuse colour | r g b | Assign lighting modifier value (r,g,b) | Floats |
 | Yes | Ks    | Specular colour | r g b | Assign specular shading value (r,g,b) | Floats |
@@ -106,7 +106,7 @@ Contains the materials for rendering a model, represented using RGB values, attr
 | Yes | d     | Opaqueness | f | Specify overall dissolution (f), from fully dissolved to fully opaque in range 0 to 1 | Floats |
 | No  | Tr    | Transparency | f | Alternative to *d*, except fully dissolved to fully opaque is ranged using (f) values 1 to 0 instead | Floats |
 | No  | Tf    | ? | ? | ? | ? |
-||| Texture & Reflection Maps
+| Texture & Reflection Maps ||||||
 | No  | map_Ka   | Ambient map | f | Specify ambient texture map relative path (f) | Files |
 | Yes | map_Kd   | Diffuse map | f | Specify diffuse texture map relative path (f) | Files |
 | No  | map_Ks   | Specular map | ? | ? | Files |
@@ -117,7 +117,7 @@ Contains the materials for rendering a model, represented using RGB values, attr
 | No  | disp     | Displacement map | ? | ? | ? |
 | No  | decal    | ? | ? | ? | ? |
 | No  | refl     | ? | ? | ? | ? |
-||| Naming
+| Naming ||||||
 | Yes | newmtl | Material specification |  |  | Identifiers |
 
 ## Parts to add
