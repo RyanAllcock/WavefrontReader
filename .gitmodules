@@ -1,0 +1,4 @@
+[submodule "WavefrontReader"]
+	path = source
+	url = https://github.com/RyanAllcock/WavefrontReader.git
+	branch = source
